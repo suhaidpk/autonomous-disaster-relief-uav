@@ -70,14 +70,6 @@ GPS coordinates and relaying them to a ground control station for rescue coordin
 
 All mission logic was validated in **Gazebo + ArduPilot SITL** before real-world flights.
 
-```bash
-# Launch ArduPilot SITL
-sim_vehicle.py -v ArduCopter --console --map
-
-# Run detection and mission script
-python3 mission.py
-```
-
 ![Gazebo simulation screenshot](images/gazebo1.jpeg)
 <!-- Add your Gazebo screenshot here -->
 
@@ -108,6 +100,32 @@ python3 mission.py
 → Simulation helped verify flight logic, but the real drone behaved differently due to wind, sensor noise, vibrations, and communication delays. This required re-tuning parameters, showing that simulation cannot fully replace real-world testing.
 
 <!-- This section is gold for interviews — be honest about what went wrong -->
+
+---
+
+---
+
+## Note:
+
+For gcs to work, provide MavlinkMirror in missionplanner so the gcs connect to UDP and monitor mavlink commands.
+
+---
+
+--
+
+## Setup & Run
+
+```bash
+# Clone the repo
+git clone https://github.com/suhaidpk/autonomous-disaster-relief-uav
+cd autonomous-disaster-relief-uav
+
+# Install dependencies
+pip install dronekit pymavlink opencv-python
+
+# Run on real hardware (Pixhawk connected via UART)
+python3 mission/mission.py
+```
 
 ---
 

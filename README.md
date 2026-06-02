@@ -111,4 +111,13 @@ python3 mission.py
 
 ---
 
-## Repository Structure
+## About
+
+Built as a final year B.Tech project — Robotics & AI Engineering  
+Rajiv Gandhi Institute of Technology, Kottayam, Kerala  
+APJ Abdul Kalam Technological University | 2022–2026
+
+**Muhammed Suhaid P K**  
+[pksuhaid@gmail.com](mailto:pksuhaid@gmail.com) |
+[LinkedIn](https://linkedin.com/in/suhaid-pk4) |
+[GitHub](https://github.com/suhaidpk)

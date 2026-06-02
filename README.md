@@ -78,7 +78,7 @@ sim_vehicle.py -v ArduCopter --console --map
 python3 mission.py
 ```
 
-![Gazebo simulation screenshot](images/gazebo_sim.jpg)
+![Gazebo simulation screenshot](images/gazebo1.jpeg)
 <!-- Add your Gazebo screenshot here -->
 
 ---

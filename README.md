@@ -55,6 +55,72 @@ GPS coordinates and relaying them to a ground control station for rescue coordin
 
 ---
 
+## Dataset
+
+We used the SARD (Search And Rescue Detection) dataset for training.
+
+🔗 https://universe.roboflow.com/sih-tacjn/sard-hzsm8
+
+---
+
+## How to Train
+
+**Install dependencies**
+
+```bash
+pip3 install ultralytics roboflow
+```
+
+**Run this once to download the dataset and train the model**
+
+```python
+from roboflow import Roboflow
+from ultralytics import YOLO
+
+rf = Roboflow(api_key="YOUR_API_KEY_HERE")  # get free API key from roboflow.com
+project = rf.workspace("sih-tacjn").project("sard-hzsm8")
+version = project.version(1)
+dataset = version.download("yolov8")
+
+model = YOLO("yolov8n.pt")
+model.train(
+    data=f"{dataset.location}/data.yaml",
+    epochs=50,
+    imgsz=320,
+    batch=4,
+)
+```
+
+After training, copy the weights to the project folder:
+
+```bash
+cp runs/detect/train/weights/best.pt ./best.pt
+```
+
+---
+
+## Running
+
+Make sure `best.pt` is in the same folder as `mission.py`, then:
+
+```bash
+python3 mission.py
+```
+
+This connects to the flight controller, opens the Pi camera, and starts detecting. When a human is detected at 30% confidence or above, the drone automatically switches to LOITER, hovers for 5 seconds, then resumes the mission. Coordinates are saved to `victim_location.txt`.
+
+---
+
+## Requirements
+
+```bash
+pip3 install pymavlink ultralytics opencv-python-headless
+```
+
+picamera2 comes pre-installed on Raspberry Pi OS.
+
+---
+
 ## How It Works
 
 1. Drone arms and takes off in **Auto mode** following a pre-planned waypoint mission
